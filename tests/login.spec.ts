@@ -19,7 +19,7 @@ test.describe('Login', () => {
         await page.getByPlaceholder('Password').fill('wrong_password');
         await page.getByRole('button', { name: 'Login' }).click();
 
-        const errorMessage = page.locator('[data-test="error"]');
+        const errorMessage = page.getByTestId('error');
         await expect(errorMessage).toBeVisible();
         await expect(errorMessage).toContainText('Username and password do not match');
     });
@@ -29,7 +29,7 @@ test.describe('Login', () => {
         await page.getByPlaceholder('Password').fill('secret_sauce');
         await page.getByRole('button', { name: 'Login' }).click();
 
-        const errorMessage = page.locator('[data-test="error"]');
+        const errorMessage = page.getByTestId('error');
         await expect(errorMessage).toBeVisible();
         await expect(errorMessage).toContainText('Sorry, this user has been locked out.');
     });
@@ -39,7 +39,7 @@ test.describe('Login', () => {
         await page.getByPlaceholder('Password').fill('secret_sauce');
         await page.getByRole('button', { name: 'Login' }).click();
 
-        const errorMessage = page.locator('[data-test="error"]');
+        const errorMessage = page.getByTestId('error');
         await expect(errorMessage).toBeVisible();
         await expect(errorMessage).toContainText('Username is required');
     });
